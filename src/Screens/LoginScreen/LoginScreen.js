@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import {Text, TextInput, Image, TouchableOpacity, View, Button} from 'react-native'
+import React, { useState } from 'react'
+import {Text, TextInput, Image, TouchableOpacity, View} from 'react-native'
 import {styles, colors} from '../../Styles'
 
 const LoginScreen = ({navigation}) => {
@@ -18,8 +18,8 @@ const LoginScreen = ({navigation}) => {
             <View style={[styles.decoration, colors.hcpBackground]} />
             <View style={styles.signInContainer}>
                 <Text style={[styles.subTitleText, colors.mcText]}>Welcome!</Text>
-                <View style={styles.signInContainer}>
-                    <View style={[styles.inputContainer, colors.hcpBorder]}>
+                <View style={styles.fieldsContainer}>
+                    <View style={[styles.inputContainer, styles.mediumContainer, colors.hcpBorder]}>
                         <TextInput 
                             style={[styles.inputText, colors.hcpText]}
                             onChangeText={(text) => setEmail(text)}
@@ -30,9 +30,7 @@ const LoginScreen = ({navigation}) => {
                             underlineColorAndroid="transparent"
                         />
                     </View>
-                </View>
-                <View style={styles.signInContainer}>
-                    <View style={[styles.inputContainer, colors.hcbBorder]}>
+                    <View style={[styles.inputContainer, styles.mediumContainer, colors.hcbBorder]}>
                         <TextInput 
                             style={[styles.inputText, colors.hcbText]}
                             onChangeText={(text)=>setPassword(text)}
@@ -45,11 +43,11 @@ const LoginScreen = ({navigation}) => {
                         />
                     </View>
                 </View>
-                <TouchableOpacity>
-                    <Text>Login</Text>
+                <TouchableOpacity style={[styles.button, colors.hcpBackground]}>
+                    <Text style={[styles.headerText, colors.bcText]}>Login</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={signUp}>
-                    <Text>Sign Up!</Text>
+                <TouchableOpacity style={[styles.buttonAlt, colors.hcbBorder]} onPress={signUp}>
+                    <Text style={[styles.headerText, colors.hcbText]}>Sign Up!</Text>
                 </TouchableOpacity>
             </View>
         </View>

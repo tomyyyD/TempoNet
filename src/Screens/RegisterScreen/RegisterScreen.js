@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { styles, colors } from '../../Styles'
+import { firebase } from '../../Firebase/config'
 
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
@@ -30,7 +31,39 @@ const RegisterScreen = ({ navigation }) => {
   const onRegister = () => {
     if (password !== confPassword) {
       alert('passwords do not match')
+      return
     }
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid
+        const data = {
+          id: uid,
+          email,
+          firstName,
+          lastName,
+          username,
+          events,
+          personalBests,
+          pace,
+          runDistance,
+          weeklyDistance
+        }
+        const usersRef = firebase.firestore().collection('users')
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then(() => {
+            navigation.navigate('Login')
+          })
+          .catch((error) => {
+            alert(error)
+          })
+      })
+      .catch((error) => {
+        alert(error)
+      })
   }
 
   return (
@@ -72,6 +105,7 @@ const RegisterScreen = ({ navigation }) => {
               placeholderTextColor={LIGHTER_COLOR}
               autoCapitalize='none'
               underlineColorAndroid='transparent'
+              secureTextEntry
             />
           </View>
           <View style={[styles.inputContainer, styles.smallContianer, colors.lcBorder]}>
@@ -83,6 +117,7 @@ const RegisterScreen = ({ navigation }) => {
               placeholderTextColor={LIGHTER_COLOR}
               autoCapitalize='none'
               underlineColorAndroid='transparent'
+              secureTextEntry
             />
           </View>
         </View>

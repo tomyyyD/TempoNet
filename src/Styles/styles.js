@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center'
   },
+  mainContentContainer: {
+    flex: 1,
+    alignItems: 'center'
+  },
   horizontalContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly'
@@ -75,6 +79,15 @@ const styles = StyleSheet.create({
     width: '60%',
     borderRadius: 10,
     borderWidth: 3
+  },
+  footer: {
+    paddingBottom: 40,
+    width: '100%',
+    alignItems: 'space-evenly'
+  },
+  footerImage: {
+    height: 32,
+    width: 32
   },
   // Sign In Page Specific
   signInContainer: {

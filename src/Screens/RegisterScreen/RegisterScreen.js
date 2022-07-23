@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View, ActivityIndicator } from 'react-native'
 import { styles, colors } from '../../Styles'
 import { firebase } from '../../Firebase/config'
 
@@ -16,6 +16,7 @@ const RegisterScreen = ({ navigation }) => {
   const [pace, setPace] = useState('')
   const [runDistance, setRunDistance] = useState('')
   const [weeklyDistance, setWeeklyDistance] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   // const BACKGROUND_COLOR = '#2F2F2F'
   const MAIN_COLOR = '#B0B3EB'
@@ -29,8 +30,15 @@ const RegisterScreen = ({ navigation }) => {
   }
 
   const onRegister = () => {
+    setIsLoading(true)
     if (password !== confPassword) {
       alert('passwords do not match')
+      setIsLoading(false)
+      return
+    }
+    if (email === '' || password === '' || confPassword === '' || username === '' || firstName === '' || lastName === '' || events === '' || personalBests === '' || pace === '' || runDistance === '' || weeklyDistance === '') {
+      alert('fill out all fields')
+      setIsLoading(false)
       return
     }
     firebase
@@ -55,14 +63,17 @@ const RegisterScreen = ({ navigation }) => {
           .doc(uid)
           .set(data)
           .then(() => {
-            navigation.navigate('Login')
+            setIsLoading(false)
+            navigation.navigate('Home', { uid })
           })
           .catch((error) => {
             alert(error)
+            setIsLoading(false)
           })
       })
       .catch((error) => {
         alert(error)
+        setIsLoading(false)
       })
   }
 
@@ -148,7 +159,7 @@ const RegisterScreen = ({ navigation }) => {
         <View style={[styles.inputContainer, styles.largeContainer, colors.mcBorder]}>
           <TextInput
             style={[styles.inputText, colors.mcText]}
-            placeholder='Events'
+            placeholder='Events (event; event 2; etc.)'
             onChangeText={(text) => setEvents(text)}
             value={events}
             placeholderTextColor={MAIN_COLOR}
@@ -202,12 +213,13 @@ const RegisterScreen = ({ navigation }) => {
             underlineColorAndroid='transparent'
           />
         </View>
-        <TouchableOpacity style={[styles.button, colors.hcbBackground]} onPress={onRegister}>
+        <TouchableOpacity style={isLoading ? [styles.button, colors.dcBackground] : [styles.button, colors.hcbBackground]} onPress={onRegister} disabled={isLoading}>
           <Text style={[styles.headerText, colors.bcText]}>Sign-Up!</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.buttonAlt, colors.hcbBorder]} onPress={LogIn}>
           <Text style={[styles.headerText, colors.hcbText]}>Back</Text>
         </TouchableOpacity>
+        { isLoading ? <ActivityIndicator size='large' /> : <></> }
       </View>
     </View>
   )

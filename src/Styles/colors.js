@@ -68,8 +68,14 @@ const colors = StyleSheet.create({
   hcpTint: {
     tintColor: HIGHLIGHT_COLOR_PINK
   },
+  lcTint: {
+    tintColor: LIGHTER_COLOR
+  },
   hcbTint: {
     tintColor: HIGHLIGHT_COLOR_BLUE
+  },
+  dcTint: {
+    tintColor: DARKER_COLOR
   }
 })
 

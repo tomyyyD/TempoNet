@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
   smallContianer: {
     width: '40%'
   },
+  tallContainer: {
+    height: '55%'
+  },
+  shortContainer: {
+    height: '28%'
+  },
   contentContainer: {
     paddingTop: 60,
     flex: 1,
@@ -23,7 +29,8 @@ const styles = StyleSheet.create({
   },
   mainContentContainer: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '100%'
   },
   horizontalContainer: {
     flexDirection: 'row',
@@ -83,23 +90,51 @@ const styles = StyleSheet.create({
   footer: {
     paddingBottom: 40,
     width: '100%',
-    alignItems: 'space-evenly'
+    alignItems: 'space-evenly',
+    justifyContent: 'center'
   },
   footerImage: {
     height: 32,
     width: 32
   },
+  footerButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 48,
+    width: 48
+  },
+  underline: {
+    height: 4,
+    width: 48,
+    marginTop: 10
+  },
+  addBorder: {
+    height: 48,
+    width: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    borderWidth: 2
+  },
   // Sign In Page Specific
   signInContainer: {
     paddingTop: 60,
     width: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   },
   // register specific
   registerContainer: {
     paddingTop: 30,
     width: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  },
+  // home page specific
+  feedContainer: {
+    borderRadius: 10,
+    alignItems: 'center',
+    marginVertical: 10
   }
 })
 

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
-import { Text, View, ActivityIndicator } from 'react-native'
-import { styles, colors } from '../Styles'
+import { View, Text, ActivityIndicator } from 'react-native'
 import Footer from '../components/footer'
+import { styles, colors } from '../Styles'
 import { firebase } from '../Firebase/config'
 
-const SearchScreen = ({ route, navigation }) => {
+const ChatScreen = ({ navigation }) => {
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -38,15 +38,14 @@ const SearchScreen = ({ route, navigation }) => {
 
   return (
     <View style={[styles.contentContainer, colors.bcBackground]}>
-      <View style={[styles.mainContentContainer, colors.bcBackground]}>
-        <Text style={[styles.titleText, colors.dcText]}>Search</Text>
-        <Text style={[styles.headerText, colors.dcText]}>Searching done by {user.username}</Text>
-      </View>
-      <Footer page={2} uid={user.id}/>
+    <View style={[styles.mainContentContainer, colors.bcBackground]}>
+      <Text style={[styles.titleText, colors.lcText]}>Chat</Text>
+      <Text>Chat Screen for {user.username}</Text>
     </View>
+    <Footer page={3}/>
+  </View>
+
   )
 }
 
-// just do it together
-
-export default SearchScreen
+export default ChatScreen

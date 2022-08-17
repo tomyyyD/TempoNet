@@ -4,6 +4,13 @@ import { Text, TextInput, TouchableOpacity, View, ActivityIndicator, KeyboardAvo
 import { styles, colors } from '../Styles'
 import { firebase } from '../Firebase/config'
 
+// const BACKGROUND_COLOR = '#2F2F2F'
+const MAIN_COLOR = '#B0B3EB'
+// const HIGHLIGHT_COLOR_PINK = '#D1ACF6'
+const LIGHTER_COLOR = '#A294D4'
+const HIGHLIGHT_COLOR_BLUE = '#ACD7F6'
+const DARKER_COLOR = '#94A8D4'
+
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
@@ -17,13 +24,6 @@ const RegisterScreen = ({ navigation }) => {
   const [runDistance, setRunDistance] = useState('')
   const [weeklyDistance, setWeeklyDistance] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-
-  // const BACKGROUND_COLOR = '#2F2F2F'
-  const MAIN_COLOR = '#B0B3EB'
-  // const HIGHLIGHT_COLOR_PINK = '#D1ACF6'
-  const LIGHTER_COLOR = '#A294D4'
-  const HIGHLIGHT_COLOR_BLUE = '#ACD7F6'
-  const DARKER_COLOR = '#94A8D4'
 
   const LogIn = () => {
     navigation.navigate('Login')
